@@ -20,7 +20,11 @@ class MainController extends Controller
     }
 
     public function adminLoginPage () {
-        return view('adminLogin');
+        if (!Auth::guard('admin')->check()) {
+            return view('adminLogin');
+            // return redirect()->route('admin.login');
+        }
+        return redirect('/admin');
     }
 
     public function adminLogin(Request $request)
