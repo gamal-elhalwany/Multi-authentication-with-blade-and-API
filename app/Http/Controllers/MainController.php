@@ -14,7 +14,7 @@ class MainController extends Controller
 
     public function adminPage () {
         if (!Auth::guard('admin')->check()) {
-            return redirect()->route('admin.login');
+            return redirect()->route('admin.login.page');
         }
         return view('admin');
     }
@@ -45,7 +45,8 @@ class MainController extends Controller
         if (Auth::guard('admin')->attempt($credentials)) {
             // Authentication successful
             return redirect()->intended('/admin');
-        } else {
+        }
+        else {
             // Authentication failed
             return redirect()->back()->withInput()->withErrors(['email' => 'Invalid credentials']);
         }

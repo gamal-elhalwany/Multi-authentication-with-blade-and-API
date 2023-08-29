@@ -29,8 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/user', [MainController::class, 'userPage'])->name('user.page');
-    Route::get('/admin', [MainController::class, 'adminPage'])->name('admin.page');
 });
+
+Route::get('/admin', [MainController::class, 'adminPage'])->name('admin.page')->middleware('auth:admin');
 
 Route::get('/admin/login', [MainController::class, 'adminLoginPage'])->name('admin.login.page');
 
